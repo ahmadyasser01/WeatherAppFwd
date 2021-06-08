@@ -23,7 +23,7 @@ function generate() {
     });
 
 };
-
+// get weather from the api 
 const getWeather = async function (baseURl, zipCode, apiKey) {
     const response = await (fetch(baseURl + zipCode + '&units=metric' + '&appid=' + apiKey));
     try {
@@ -40,7 +40,7 @@ const getWeather = async function (baseURl, zipCode, apiKey) {
 // add event listener to the button
 generateButton.addEventListener('click', generate);
 
-
+// post data to server
 const post = async (baseURl = "", data = {}) => {
     const response = await fetch(baseURl, {
         method: 'POST',
@@ -62,7 +62,7 @@ const post = async (baseURl = "", data = {}) => {
     }
 };
 
-
+//update the ui with the data from the server
 const updateUI = async () => {
     const resData = await fetch('/data');
     try {
