@@ -25,3 +25,16 @@ const port = 8000;
 const server = app.listen(port, (req, res) => {
     console.log(`server is running on port ${port}`);
 })
+
+app.get('/data', (req, res) => {
+    res.send(projectData)
+})
+
+app.post('/upload', (req, res) => {
+    projectData = {
+        date: req.body.date,
+        temperature: req.body.temperature,
+        content: req.body.content
+    };
+    res.send(projectData);
+})
