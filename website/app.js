@@ -25,7 +25,7 @@ function generate() {
 };
 
 const getWeather = async function (baseURl, zipCode, apiKey) {
-    const response = await (fetch(baseURl + zipCode + '&appid=' + apiKey));
+    const response = await (fetch(baseURl + zipCode + '&units=metric' + '&appid=' + apiKey));
     try {
         const data = await response.json();
         console.log(data.main.temp);
