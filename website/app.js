@@ -18,7 +18,7 @@ function generate() {
     const zipCode = document.getElementById('zip').value;
     const userFeeling = document.getElementById('feelings').value;
     getWeather(baseURl, zipCode, apiKey).then((data) => {
-        post('/upload', { date: newDate, tempreture: data.main.temp, content: userFeeling })
+        post('/upload', { date: newDate, temperature: data['main']['temp'], content: userFeeling })
         updateUI();
     });
 
@@ -28,7 +28,7 @@ const getWeather = async function (baseURl, zipCode, apiKey) {
     const response = await (fetch(baseURl + zipCode + '&appid=' + apiKey));
     try {
         const data = await response.json();
-        console.log(data);
+        console.log(data.main.temp);
         return data;
     }
     catch (error) {
@@ -48,7 +48,8 @@ const post = async (baseURl = "", data = {}) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+
     });
     try {
         const resp = await response.json();
@@ -67,7 +68,7 @@ const updateUI = async () => {
     try {
         const outputData = await resData.json();
         dateElement.innerHTML = `Date: ${outputData.date}`;
-        tempElement.innerHTML = `Tempreture:  ${outputData.tempreture}`;
+        tempElement.innerHTML = `temperature:  ${outputData.temperature}`;
         contentElement.innerHTML = `I feel ${outputData.content} `;
 
     }

@@ -28,6 +28,7 @@ const server = app.listen(port, (req, res) => {
 
 app.get('/data', (req, res) => {
     res.send(projectData)
+    console.log(projectData);
 })
 
 app.post('/upload', (req, res) => {
@@ -37,4 +38,6 @@ app.post('/upload', (req, res) => {
         content: req.body.content
     };
     res.send(projectData);
+    console.log(projectData);
+
 })
